@@ -1,0 +1,60 @@
+| Entitas             | Atribut                                                             |
+| ------------------- | ------------------------------------------------------------------- |
+| **Pasien**          | ID\_Pasien (PK), Nama, Tanggal\_Lahir, Jenis\_Kelamin, Alamat       |
+| **Dokter**          | ID\_Dokter (PK), Nama, Spesialisasi, Nomor\_Telepon                 |
+| **Rekam\_Medis**    | ID\_Rekam (PK), Tanggal, Diagnosa, ID\_Pasien (FK), ID\_Dokter (FK) |
+| **Obat**            | ID\_Obat (PK), Nama\_Obat, Dosis                                    |
+| **Resep**           | ID\_Resep (PK), ID\_Rekam (FK), ID\_Obat (FK), Jumlah               |
+| **Tindakan\_Medis** | ID\_Tindakan (PK), ID\_Rekam (FK), Nama\_Tindakan, Biaya            |
+
+
+
+//DATABASE LAYOUT DATA
+CREATE TABLE pasien (
+  id_pasien INT PRIMARY KEY AUTO_INCREMENT,
+  nama VARCHAR(100),
+  tanggal_lahir DATE,
+  jenis_kelamin VARCHAR(10),
+  alamat TEXT,
+  no_hp VARCHAR(15)
+);
+
+CREATE TABLE dokter (
+  id_dokter INT PRIMARY KEY AUTO_INCREMENT,
+  nama VARCHAR(100),
+  spesialisasi VARCHAR(50),
+  nomor_telepon VARCHAR(15)
+);
+
+CREATE TABLE rekam_medis (
+  id_rekam INT PRIMARY KEY AUTO_INCREMENT,
+  tanggal DATE,
+  diagnosa TEXT,
+  id_pasien INT,
+  id_dokter INT,
+  FOREIGN KEY (id_pasien) REFERENCES pasien(id_pasien),
+  FOREIGN KEY (id_dokter) REFERENCES dokter(id_dokter)
+);
+
+CREATE TABLE obat (
+  id_obat INT PRIMARY KEY AUTO_INCREMENT,
+  nama_obat VARCHAR(100),
+  dosis VARCHAR(50)
+);
+
+CREATE TABLE resep (
+  id_resep INT PRIMARY KEY AUTO_INCREMENT,
+  id_rekam INT,
+  id_obat INT,
+  jumlah INT,
+  FOREIGN KEY (id_rekam) REFERENCES rekam_medis(id_rekam),
+  FOREIGN KEY (id_obat) REFERENCES obat(id_obat)
+);
+
+CREATE TABLE tindakan_medis (
+  id_tindakan INT PRIMARY KEY AUTO_INCREMENT,
+  id_rekam INT,
+  nama_tindakan VARCHAR(100),
+  biaya DECIMAL(10,2),
+  FOREIGN KEY (id_rekam) REFERENCES rekam_medis(id_rekam)
+);
