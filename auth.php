@@ -32,12 +32,12 @@ if ($result && mysqli_num_rows($result) === 1) {
             exit();
         } else {
             setFlashMessage('error', 'Role tidak valid untuk pasien!');
-            header("Location: login.php");
+            header("Location: index.php");
             exit();
         }
     } else {
         setFlashMessage('error', 'Password salah!');
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 }
@@ -61,12 +61,12 @@ if ($result && mysqli_num_rows($result) === 1) {
             exit();
         } else {
             setFlashMessage('error', 'Role tidak valid untuk dokter!');
-            header("Location: login.php");
+            header("Location: index.php");
             exit();
         }
     } else {
         setFlashMessage('error', 'Password salah!');
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 }
@@ -90,19 +90,19 @@ if ($result && mysqli_num_rows($result) === 1) {
             exit();
         } else {
             setFlashMessage('error', 'Role tidak valid untuk petugas!');
-            header("Location: login.php");
+            header("Location: index.php");
             exit();
         }
     } else {
         setFlashMessage('error', 'Password salah!');
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 }
 
 // Jika tidak ditemukan di tabel manapun
 setFlashMessage('error', 'Nomor HP tidak ditemukan!');
-header("Location: login.php");
+header("Location: index.php");
 exit();
 
 // Tutup statement

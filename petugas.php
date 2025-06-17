@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role
         'type' => 'error',
         'message' => 'Anda harus login sebagai petugas untuk mengakses halaman ini!'
     ];
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 

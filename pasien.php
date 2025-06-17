@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role
         'type' => 'error',
         'message' => 'Anda harus login sebagai pasien untuk mengakses halaman ini!'
     ];
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -16,7 +16,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role
 if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
