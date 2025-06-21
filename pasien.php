@@ -36,7 +36,7 @@
       z-index: -1; /* Di belakang form, di atas video */
     }
     .login-container {
-      z-index: 1; /* Di depan video dan overlay */
+      z-index: 1; /* menempatkan box kontainer login agar berada di depan video dan overlay*/
     }
   </style>
 </head>
@@ -69,9 +69,10 @@
       unset($_SESSION['flash_message']);
     }
     ?>
-<form action="data_check.php" method="POST">
+<form action="auth.php" method="POST">
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
     <!-- Nama Pasien -->
+    <!-- form untuk mencari data pasien berdasarkan nama pasien dan no hp -->
     <div>
       <label for="nama_pasien" class="block text-gray-700 font-medium mb-2">Nama Pasien</label>
       <input type="text" id="nama_pasien" name="nama_pasien" required
