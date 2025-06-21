@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2025 at 06:08 PM
+-- Generation Time: Jun 21, 2025 at 05:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,18 +55,20 @@ INSERT INTO `dokter` (`id_dokter`, `nama`, `spesialisasi`, `nomor_telepon`, `rol
 CREATE TABLE `obat` (
   `id_obat` int(11) NOT NULL,
   `nama_obat` varchar(100) DEFAULT NULL,
-  `dosis` varchar(50) DEFAULT NULL
+  `dosis` varchar(50) DEFAULT NULL,
+  `harga` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `nama_obat`, `dosis`) VALUES
-(1, 'paracetamol', '500 mg, 3x sehari'),
-(2, 'amoxicillin', '250 mg, 2x sehari'),
-(3, 'captopril', '25 mg, 1x sehari'),
-(5, 'Antasida', '500 mg,3x sehari');
+INSERT INTO `obat` (`id_obat`, `nama_obat`, `dosis`, `harga`) VALUES
+(1, 'paracetamol', '500 mg, 3x sehari', 25000.00),
+(2, 'amoxicillin', '250 mg, 2x sehari', 35000.00),
+(3, 'captopril', '25 mg, 1x sehari', 40000.00),
+(5, 'Antasida', '500 mg,3x sehari', 20000.00),
+(6, 'Acetazolamide', '250mg, 2x sehari', 50000.00);
 
 -- --------------------------------------------------------
 
@@ -144,7 +146,8 @@ INSERT INTO `rekam_medis` (`id_rekam`, `tanggal`, `diagnosa`, `id_pasien`, `id_d
 (3, '2025-06-03', 'infeksi saluran pernapasan', 3, 3),
 (5, '2025-12-10', 'Infeksi Pernafasan', 5, 2),
 (6, '2025-06-07', 'Hipertensi', 6, 2),
-(8, '2025-06-19', 'Batu Ginjal', 5, 1);
+(8, '2025-06-19', 'Batu Ginjal', 5, 1),
+(9, '2025-06-21', 'kangker', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +171,8 @@ INSERT INTO `resep` (`id_resep`, `id_rekam`, `id_obat`, `jumlah`) VALUES
 (3, 3, 2, 15),
 (5, 5, 2, 2),
 (6, 6, 2, 3),
-(8, 8, 3, 3);
+(8, 8, 3, 3),
+(9, 9, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -191,7 +195,8 @@ INSERT INTO `tindakan_medis` (`id_tindakan`, `id_rekam`, `nama_tindakan`, `biaya
 (2, 2, 'tes tekanan darah', 75000.00),
 (3, 3, 'nebulizer', 100000.00),
 (5, 6, 'Diuretik', 1500000.00),
-(7, 8, 'Operasi', NULL);
+(7, 8, 'Operasi', 50000000.00),
+(8, 9, 'rawat', NULL);
 
 --
 -- Indexes for dumped tables
@@ -258,7 +263,7 @@ ALTER TABLE `dokter`
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pasien`
@@ -276,19 +281,19 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-  MODIFY `id_rekam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_rekam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `resep`
 --
 ALTER TABLE `resep`
-  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tindakan_medis`
 --
 ALTER TABLE `tindakan_medis`
-  MODIFY `id_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
