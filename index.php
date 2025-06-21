@@ -55,7 +55,7 @@
   <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md login-container">
     <div class="text-center mb-6">
       <h1 class="text-2xl font-bold text-blue-600">🩺 Login Pengguna</h1>
-      <p class="text-gray-500 text-sm">Silakan masuk sebagai Pasien, Dokter, atau Petugas</p>
+      <p class="text-gray-500 text-sm">Silakan masuk sebagai Dokter, atau Petugas</p>
     </div>
     <!-- Menampilkan Flash Message -->
     <?php
@@ -91,6 +91,11 @@
         Masuk
       </button>
     </form>
+    <div class="text-center mt-4">
+  <a href="pasien.php" class="text-blue-600 hover:text-blue-800 text-sm underline">
+    🔍 Cari Data Pasien
+  </a>
+</div>
   </div>
 </body>
 </html>

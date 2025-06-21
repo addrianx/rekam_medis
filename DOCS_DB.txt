@@ -39,7 +39,8 @@ CREATE TABLE rekam_medis (
 CREATE TABLE obat (
   id_obat INT PRIMARY KEY AUTO_INCREMENT,
   nama_obat VARCHAR(100),
-  dosis VARCHAR(50)
+  dosis VARCHAR(50),
+  harga DECIMAL(10,2) -- Tambahan kolom harga
 );
 
 CREATE TABLE resep (

@@ -59,7 +59,7 @@ mysqli_stmt_execute($stmt_dokter);
 $result_dokter = mysqli_stmt_get_result($stmt_dokter);
 
 // Ambil data obat
-$query_obat = "SELECT id_obat, nama_obat, dosis 
+$query_obat = "SELECT id_obat, nama_obat, dosis, harga 
                FROM obat 
                ORDER BY id_obat";
 $stmt_obat = mysqli_prepare($conn, $query_obat);
@@ -213,8 +213,10 @@ $result_obat = mysqli_stmt_get_result($stmt_obat);
                                 <th class="py-2 sm:py-3 px-1 sm:px-4 font-medium text-xs sm:text-base text-gray-700">ID Obat</th>
                                 <th class="py-2 sm:py-3 px-1 sm:px-4 font-medium text-xs sm:text-base text-gray-700">Nama Obat</th>
                                 <th class="py-2 sm:py-3 px-1 sm:px-4 font-medium text-xs sm:text-base text-gray-700">Dosis</th>
+                                <th class="py-2 sm:py-3 px-1 sm:px-4 font-medium text-xs sm:text-base text-gray-700">Harga</th>
                             </tr>
                         </thead>
+                        <!-- menampilkan semua data obat yang ada di data base -->
                         <tbody>
                             <?php if (mysqli_num_rows($result_obat) > 0): ?>
                                 <?php while ($row = mysqli_fetch_assoc($result_obat)): ?>
@@ -222,6 +224,9 @@ $result_obat = mysqli_stmt_get_result($stmt_obat);
                                         <td class="py-2 sm:py-3 px-1 sm:px-4 text-xs sm:text-base text-gray-700 whitespace-nowrap"><?php echo htmlspecialchars($row['id_obat']); ?></td>
                                         <td class="py-2 sm:py-3 px-1 sm:px-4 text-xs sm:text-base text-gray-700 whitespace-nowrap"><?php echo htmlspecialchars($row['nama_obat']); ?></td>
                                         <td class="py-2 sm:py-3 px-1 sm:px-4 text-xs sm:text-base text-gray-700 whitespace-nowrap"><?php echo htmlspecialchars($row['dosis']); ?></td>
+                                        <td class="py-2 sm:py-3 px-1 sm:px-4 text-xs sm:text-base text-gray-700 whitespace-nowrap">
+                                        Rp.<?php echo number_format($row['harga'], 2, ',', '.'); ?>
+                                        </td><!--  menggunakan fungsi bawaan php number_format untuk memunculkan format 2 desimal dibelakang koma -->
                                     </tr>
                                 <?php endwhile; ?>
                             <?php else: ?>

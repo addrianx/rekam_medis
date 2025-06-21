@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Simpan data dokter
         $nama_obat = ucwords(strtolower(trim($_POST['nama_obat'])));
         $dosis = trim($_POST['dosis']);
-        
+        $harga = floatval($_POST['harga']);
 
-        $query_obat = "INSERT INTO obat (nama_obat, dosis) VALUES (?, ?)";
+        $query_obat = "INSERT INTO obat (nama_obat, dosis, harga) VALUES (?, ?, ?)";
         $stmt_obat = mysqli_prepare($conn, $query_obat);
-        mysqli_stmt_bind_param($stmt_obat, "ss", $nama_obat, $dosis);
+        mysqli_stmt_bind_param($stmt_obat, "ssd", $nama_obat, $dosis, $harga);
 
 
 
@@ -96,7 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label class="block text-sm sm:text-base font-medium text-gray-700">dosis</label>
                             <input type="text" name="dosis" class="mt-2 block w-full rounded-xl border-2 border-gray-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm sm:text-base" required>
                         </div>
- 
+                        <div>
+                        <label class="block text-sm sm:text-base font-medium text-gray-700">Harga (Rp)</label>
+                        <input type="number" name="harga" step="0.01" min="0"
+                                class="mt-2 block w-full rounded-xl border-2 border-gray-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm sm:text-base"
+                                required>
+                        </div>
+
                     </div>
                 </div>
 
