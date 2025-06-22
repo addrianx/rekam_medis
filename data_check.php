@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = mysqli_stmt_get_result($stmt);
 
     if ($pasien = mysqli_fetch_assoc($result)) {
-        // Simpan data pasien ke session untuk ditampilkan di halaman selanjutnya
+        // Untuk meyimpan data pasien ke session untuk ditampilkan di halaman selanjutnya
         $_SESSION['pasien'] = $pasien;
         header("Location: data_pasien.php");
         exit();

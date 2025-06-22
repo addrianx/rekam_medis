@@ -1,7 +1,8 @@
 <?php
+// Kode ini digunakan untuk menghubungkan aplikasi PHP ke database MySQL bernama rekam_medis
 $host     = "localhost";
-$username = "root";       // ganti jika tidak pakai user root
-$password = "";           // sesuaikan dengan password MySQL kamu
+$username = "root";       
+$password = "";           
 $database = "rekam_medis";
 
 // Membuat koneksi

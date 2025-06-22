@@ -20,7 +20,7 @@ if (isset($_POST['logout'])) {
     exit();
 }
 
-// Ambil total data untuk kartu dashboard menggunakan prepared statements
+//untuk mengambil jumlah total pasien dari tabel pasien di database, lalu menyimpannya dalam variabel $total_pasien
 $query_total_pasien = "SELECT COUNT(*) as total FROM pasien";
 $stmt_total_pasien = mysqli_prepare($conn, $query_total_pasien);
 mysqli_stmt_execute($stmt_total_pasien);
@@ -28,6 +28,7 @@ $result_total_pasien = mysqli_stmt_get_result($stmt_total_pasien);
 $total_pasien = mysqli_fetch_assoc($result_total_pasien)['total'];
 mysqli_stmt_close($stmt_total_pasien);
 
+//untuk menghitung jumlah total baris (data dokter) yang ada di tabel dokter, lalu menyimpannya ke dalam variabel $total_dokter.
 $query_total_dokter = "SELECT COUNT(*) as total FROM dokter";
 $stmt_total_dokter = mysqli_prepare($conn, $query_total_dokter);
 mysqli_stmt_execute($stmt_total_dokter);
@@ -35,6 +36,7 @@ $result_total_dokter = mysqli_stmt_get_result($stmt_total_dokter);
 $total_dokter = mysqli_fetch_assoc($result_total_dokter)['total'];
 mysqli_stmt_close($stmt_total_dokter);
 
+//Untuk menghitung jumlah seluruh data obat yang ada di tabel obat, dan menyimpannya ke dalam variabel $total_obat.
 $query_total_obat = "SELECT COUNT(*) as total FROM obat";
 $stmt_total_obat = mysqli_prepare($conn, $query_total_obat);
 mysqli_stmt_execute($stmt_total_obat);
@@ -216,7 +218,7 @@ $result_obat = mysqli_stmt_get_result($stmt_obat);
                                 <th class="py-2 sm:py-3 px-1 sm:px-4 font-medium text-xs sm:text-base text-gray-700">Harga</th>
                             </tr>
                         </thead>
-                        <!-- menampilkan semua data obat yang ada di data base -->
+                        <!-- untuk menampilkan semua data obat yang ada di data base -->
                         <tbody>
                             <?php if (mysqli_num_rows($result_obat) > 0): ?>
                                 <?php while ($row = mysqli_fetch_assoc($result_obat)): ?>

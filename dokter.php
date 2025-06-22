@@ -23,7 +23,7 @@ if (isset($_POST['logout'])) {
 // Ambil ID dokter dari sesi
 $id_dokter = $_SESSION['user_id'];
 
-// Ambil total data untuk kartu dashboard menggunakan prepared statement
+//Menghitung jumlah pasien yang memiliki rekam medis dan ditangani oleh dokter tertentu ($id_dokter), lalu menyimpannya ke dalam variabel $total_pasien.
 $query_total_pasien = "SELECT COUNT(DISTINCT p.id_pasien) as total FROM pasien p JOIN rekam_medis rm ON p.id_pasien = rm.id_pasien WHERE rm.id_dokter = ?";
 $stmt_total_pasien = mysqli_prepare($conn, $query_total_pasien);
 mysqli_stmt_bind_param($stmt_total_pasien, "i", $id_dokter);
@@ -32,6 +32,7 @@ $result_total_pasien = mysqli_stmt_get_result($stmt_total_pasien);
 $total_pasien = mysqli_fetch_assoc($result_total_pasien)['total'];
 mysqli_stmt_close($stmt_total_pasien);
 
+//Menghitung jumlah total entri rekam medis di tabel rekam_medis yang ditangani oleh dokter tertentu ($id_dokter).
 $query_total_rekam = "SELECT COUNT(*) as total FROM rekam_medis WHERE id_dokter = ?";
 $stmt_total_rekam = mysqli_prepare($conn, $query_total_rekam);
 mysqli_stmt_bind_param($stmt_total_rekam, "i", $id_dokter);
@@ -40,6 +41,7 @@ $result_total_rekam = mysqli_stmt_get_result($stmt_total_rekam);
 $total_rekam_medis = mysqli_fetch_assoc($result_total_rekam)['total'];
 mysqli_stmt_close($stmt_total_rekam);
 
+//Menghitung jumlah total entri resep di tabel resep yang berelasi dengan rekam medis milik dokter tertentu
 $query_total_resep = "SELECT COUNT(*) as total FROM resep r JOIN rekam_medis rm ON r.id_rekam = rm.id_rekam WHERE rm.id_dokter = ?";
 $stmt_total_resep = mysqli_prepare($conn, $query_total_resep);
 mysqli_stmt_bind_param($stmt_total_resep, "i", $id_dokter);
@@ -48,7 +50,7 @@ $result_total_resep = mysqli_stmt_get_result($stmt_total_resep);
 $total_resep = mysqli_fetch_assoc($result_total_resep)['total'];
 mysqli_stmt_close($stmt_total_resep);
 
-// Ambil data pasien beserta detail rekam medis, resep, dan tindakan
+//untuk mengambil data pasien beserta detail rekam medis, resep, dan tindakan
 $query_pasien = "
     SELECT DISTINCT p.id_pasien, p.nama, p.tanggal_lahir, p.jenis_kelamin, p.alamat, p.no_hp 
     FROM pasien p 

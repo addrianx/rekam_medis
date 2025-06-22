@@ -69,7 +69,7 @@
       unset($_SESSION['flash_message']);
     }
     ?>
-<form action="auth.php" method="POST">
+<form action="data_check.php" method="POST">
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
     <!-- Nama Pasien -->
     <!-- form untuk mencari data pasien berdasarkan nama pasien dan no hp -->
