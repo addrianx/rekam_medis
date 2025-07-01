@@ -3,7 +3,7 @@
 | **Pasien**          | ID\_Pasien (PK), Nama, Tanggal\_Lahir, Jenis\_Kelamin, Alamat       |
 | **Dokter**          | ID\_Dokter (PK), Nama, Spesialisasi, Nomor\_Telepon                 |
 | **Rekam\_Medis**    | ID\_Rekam (PK), Tanggal, Diagnosa, ID\_Pasien (FK), ID\_Dokter (FK) |
-| **Obat**            | ID\_Obat (PK), Nama\_Obat, Dosis                                    |
+| **Obat**            | ID\_Obat (PK), Nama\_Obat, Dosis, Harga                             |
 | **Resep**           | ID\_Resep (PK), ID\_Rekam (FK), ID\_Obat (FK), Jumlah               |
 | **Tindakan\_Medis** | ID\_Tindakan (PK), ID\_Rekam (FK), Nama\_Tindakan, Biaya            |
 
@@ -12,11 +12,14 @@
 //DATABASE LAYOUT DATA
 CREATE TABLE pasien (
   id_pasien INT PRIMARY KEY AUTO_INCREMENT,
-  nama VARCHAR(100),
-  tanggal_lahir DATE,
+  nama VARCHAR(100) NOT NULL,
+  tanggal_lahir DATE NOT NULL,
   jenis_kelamin VARCHAR(10),
   alamat TEXT,
-  no_hp VARCHAR(15)
+  no_hp VARCHAR(15),
+  kode_akses VARCHAR(10) UNIQUE, -- kode unik untuk akses pasien
+  akses_kadaluarsa DATE DEFAULT NULL, -- batas masa berlaku akses
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE dokter (
