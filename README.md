@@ -1,7 +1,10 @@
 # 🏥 Aplikasi Web Rekam Medis
 
-Repositori ini berisi **tugas proyek aplikasi web rekam medis** yang dikembangkan oleh **Kelompok 4** sebagai bagian dari mata kuliah terkait pengembangan aplikasi berbasis web.
-
+Repo ini contoh project Alikasi Rekam Medis yang dibuat Dengan PHP native dan MYSQL dengan Prepared Statement
+Plugin yang digunakan
+- Grid.js
+- Dom PDF
+- 
 ## 📌 Deskripsi Proyek
 
 Aplikasi ini bertujuan untuk mempermudah proses pencatatan dan pengelolaan data rekam medis pasien di lingkungan klinik atau fasilitas kesehatan sederhana. Sistem ini dilengkapi dengan fitur:
